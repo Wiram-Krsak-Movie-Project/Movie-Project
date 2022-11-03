@@ -1,10 +1,23 @@
+$(window).on('load', function () {
+    $('.container').css('display', 'none')
+    displayLoading()
+
+})
+
+
 // selecting dom element
-const textInput = document.querySelector("#inputPart");
+let textTitle = document.querySelector("#inputTitle");
+let textRating = document.querySelector('#inputRating');
 
 const btn = document.querySelector("#submitInput");
 
 // adding event listener to button
-btn.addEventListener("click", displayLoading);
+btn.addEventListener("click", function (e) {
+    e.preventDefault()
+    postHandler()
+    displayLoading()
+    console.log(this);
+});
 
 // selecting loading div
 const loader = document.querySelector("#loading");
@@ -15,8 +28,9 @@ function displayLoading() {
     // to stop loading after some time
     setTimeout(() => {
         loader.classList.remove("display");
-        fetchHandler()
-    }, 5000);
+        $('.container').css('display', 'block')
+        getHandler()
+    }, 2000);
 }
 
 // hiding loading
@@ -27,24 +41,27 @@ function hideLoading() {
 // url
 var url = 'https://little-thundering-jump.glitch.me/movies'
 
-function fetchHandler(event) {
+function getHandler() {
 
-    var input = textInput.value;
-    var finalURL = buildURL(input);
 
-    fetch(finalURL)
+
+    fetch(url)
         .then(response => response.json())
         .then(json => {
             hideLoading()
+            $("#showOutput").empty()
             json.forEach(function (unit) {
 
                 mTitle = unit.title;
                 mRating = unit.rating;
 
                 let html = ``;
-                    // html += `<ul>`;
-                html += "<div>" + `${mTitle} ${mRating}` + "</div>";
-                    // html += `</ul>`;
+
+                html +=  `<div id=${unit.id} class=col-3><p>Title: ${mTitle}</p>`;
+                html += "<p>Rating: " + mRating + '</p>';
+                html += `<button id=${unit.id}>x</button>`;
+                html += "</div>";
+
                 console.log(html);
                 $("#showOutput").append(html);
         })
@@ -54,8 +71,9 @@ function fetchHandler(event) {
 // creating url format
 
 function buildURL(inputData) {
-    return `${url}?text=${inputData}`;
+    return `${url}${inputData}`;
 }
+
 
 
 //Get Method
@@ -66,26 +84,40 @@ fetch('https://little-thundering-jump.glitch.me/movies')
 
 
 // Post Method
-// fetch('https://little-thundering-jump.glitch.me/movies', {
-//     method: 'POST',
-//     body: JSON.stringify({
-//         title: 'LOTR',
-//         body: 'Movie # 4',
-//         userId: 1,
-//     }),
-//     headers: {
-//         'Content-type': 'application/json; charset=UTF-8',
-//     },
-// })
-//     .then((response) => response.json())
-//     .then((json) => console.log(json));
+function postHandler() {
+    let postTitle = document.querySelector('#inputTitle').value
+    let postRating = document.querySelector('#inputRating').value
+    if (postRating === "" || postTitle === "") {
+
+    }
+    else {
+
+
+    fetch('https://little-thundering-jump.glitch.me/movies', {
+    method: 'POST',
+    body: JSON.stringify({
+        title: postTitle,
+        rating: postRating
+
+    }),
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+    },
+})
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+}
+}
+
+
+//Event Listener for delete
 
 
 
 // Delete Method
 
 
-// fetch('https://little-thundering-jump.glitch.me/movies/5', {
+// fetch('https://little-thundering-jump.glitch.me/movies/9', {
 //     method: 'DELETE',
 // }).then(res => console.log(res.status))
 
