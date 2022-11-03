@@ -49,44 +49,63 @@ function getHandler() {
                 mTitle = unit.title;
                 mRating = unit.rating;
                 let html = ``;
-                // html += `<div class="card" style="width: 18rem;">`;
-                // html += `<button id=${unit.id} type="button" class="btn-close" aria-label="Close"></button>`
-                // html += `<video controls loop width="100%" autoplay muted><source src="assets/giphy360p.mp4" type="video/mp4">Your browser does not support the video tag.</video>`;
-                // html += `<div class="card-body">`;
-                // html += `<h5 id=${unit.id} class="card-title">Title: ${mTitle}</h5>`;
-                // html += `<p class="card-text">Rating: ${mRating}</p>`;
-                // html += `<p class="card-text">Genre</p>`;
-                // html += `</div>`;
-                // html += `</div>`;
-                // console.log(html);
-                // $("#showOutput").append(html);
-
-                html += `<div id="carouselExampleCaptions newOutPut" className="carousel slide" data-bs-ride="false">`
+                html += `<div class="card" style="width: 18rem;">`;
                 html += `<button id=${unit.id} type="button" class="btn-close" aria-label="Close"></button>`
-                html += `<div class="carousel-indicators">`;
-                html += `<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`;
-                html += `</div>`;
-                html += `<div class="carousel-inner">`;
-                html += `<div class="carousel-item active">`;
-                html += `<video controls loop class="d-block w-100" autoplay muted><source src="assets/giphy360p.mp4" type="video/mp4">Your browser does not support the video tag.</video>`;
-                html += `<div class="carousel-caption d-none d-md-block">`;
-                html += `<h5 id=${unit.id}>Title: ${mTitle}</h5>`;
-                html += `<p>Rating: ${mRating}</p>`;
-                html += `<p>Genre</p>`;
+                html += `<video controls loop width="100%" autoplay muted><source src="assets/giphy360p.mp4" type="video/mp4">Your browser does not support the video tag.</video>`;
+                html += `<div class="card-body">`;
+                html += `<h5 id=${unit.id} class="card-title">Title: ${mTitle}</h5>`;
+                html += `<p class="card-text">Rating: ${mRating}</p>`;
+                html += `<p class="card-text">Genre</p>`;
                 html += `</div>`;
                 html += `</div>`;
-                html += `</div>`;
-                html += `<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="prev">`;
-                html += `<span class="carousel-control-prev-icon" aria-hidden="true"></span>`;
-                html += `<span class="visually-hidden">Previous</span>`;
-                html += `</button>`;
-                html += `<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">`;
-                html += `<span class="carousel-control-next-icon" aria-hidden="true"></span>`;
-                html += `<span class="visually-hidden">Next</span>`;
-                html += `</button>`;
-                html += `</div>`
-                $(".newOutPut").append(html);
+                console.log(html);
+                $("#showOutput").append(html);
+
+                // html += `<div id="carouselExampleCaptions newOutPut" className="carousel slide" data-bs-ride="false">`
+                // html += `<button id=${unit.id} type="button" class="btn-close" aria-label="Close"></button>`
+                // html += `<div class="carousel-indicators">`;
+                // html += `<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`;
+                // html += `</div>`;
+                // html += `<div class="carousel-inner">`;
+                // html += `<div class="carousel-item active">`;
+                // html += `<video controls loop class="d-block w-100" autoplay muted><source src="assets/giphy360p.mp4" type="video/mp4">Your browser does not support the video tag.</video>`;
+                // html += `<div class="carousel-caption d-none d-md-block">`;
+                // html += `<h5 id=${unit.id}>Title: ${mTitle}</h5>`;
+                // html += `<div class="form-check form-check-inline">`
+                // html += `<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">`
+                // html += `<label class="form-check-label" for="inlineRadio1">1</label>`
+                // html += `</div>`
+                // html += `<div class="form-check form-check-inline">`
+                // html += `<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">`
+                // html += `<label class="form-check-label" for="inlineRadio2">2</label>`
+                // html += `</div>`
+                // html += `<div class="form-check form-check-inline">`
+                // html += `<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">`
+                // html += `<label class="form-check-label" for="inlineRadio3">3</label>`
+                // html += `</div>`
+                // html += `<div class="form-check form-check-inline">`
+                // html += `<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">`
+                // html += `<label class="form-check-label" for="inlineRadio2">4</label>`
+                // html += `</div>`
+                // html += `<div class="form-check form-check-inline">`
+                // html += `<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">`
+                // html += `<label class="form-check-label" for="inlineRadio3">5</label>`
+                // html += `</div>`;
+                // html += `<p>Genre</p>`;
+                // html += `</div>`;
+                // html += `</div>`;
+                // html += `</div>`;
+                // html += `<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                //         data-bs-slide="prev">`;
+                // html += `<span class="carousel-control-prev-icon" aria-hidden="true"></span>`;
+                // html += `<span class="visually-hidden">Previous</span>`;
+                // html += `</button>`;
+                // html += `<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">`;
+                // html += `<span class="carousel-control-next-icon" aria-hidden="true"></span>`;
+                // html += `<span class="visually-hidden">Next</span>`;
+                // html += `</button>`;
+                // html += `</div>`
+                // $(".newOutPut").append(html);
             })
         })
     setTimeout(function () {
