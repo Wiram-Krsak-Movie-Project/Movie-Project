@@ -308,6 +308,7 @@ dropDwnBox.addEventListener('change', function (e){
 
 // PATCH METHOD
 function editPatch(title, rating, id) {
+    $('#new-forms').remove()
     fetch(`https://little-thundering-jump.glitch.me/movies/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
@@ -322,6 +323,7 @@ function editPatch(title, rating, id) {
         .then((response) => response.json())
         .then((json) => getHandler())
         .catch(err => console.log(err))
+
 }
 
 
