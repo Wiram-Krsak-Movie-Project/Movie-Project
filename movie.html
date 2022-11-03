@@ -34,15 +34,20 @@
 <!--    </div>-->
 <div id="shadow">
 <div id="data" class="container">
-  <div class="row"></div>
+  <div class="row" id="locations"></div>
 </div>
 <br>
 <br>
 
 
 <form action="">
+    Add a Movie
+    <br>
     <label for="inputTitle">
         Title: <input type="text" name="title" id="inputTitle">
+    </label>
+    <label for="inputGenre">
+        Genre: <input type="text" name="genre" id="inputGenre">
     </label>
     <label for="inputrRating">
         Rating: <input type="text" name="rating" id="inputrRating">
@@ -50,7 +55,7 @@
     <label for="submit">
         <input type="button" name="submit" id="submit" value="Submit">
     </label>
-    <label for="movies">Choose a Movie:</label>
+    <label for="movies">Choose a Movie to Edit:</label>
     <select id="movies" name="movies">
     </select>
     <label id="new-forms">

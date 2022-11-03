@@ -192,7 +192,7 @@
 
 
 
-//Get Method
+//Opening Loader Screen
 $('#shadow').css('display', 'none')
 let loading = document.createElement('div')
 loading.id = 'loading'
@@ -202,21 +202,23 @@ setTimeout(function () {
     loading.remove()
     $('#shadow').css('display', 'block')
 }, 4000)
-
+//Get Method
+let array;
 function getHandler() {
     fetch('https://little-thundering-jump.glitch.me/movies')
         .then(res => res.json())
         .then(data => {
+
             $('.row').empty();
             $('#movies').empty()
             data.forEach(x => {
                 let html = "";
-                html += `<div id=${x.id} class="col-3"><p>Title: ${x.title}</p><p>Rating: ${x.rating}</p>`;
+                html += `<div id=${x.id} class="col-3 mb-3 bg-dark text-light"><p>Title: ${x.title}</p><p>Rating: ${x.rating}</p><p>Genre: ${x.genre}</p>`;
                 html += `<button id=${x.id}>x</button></div>`;
 
                 $('.row').append(html);
                 let html2 = "";
-                html2 += `<option id=${x.id}>${x.title} - ${x.rating}</option>`;
+                html2 += `<option id=${x.id}>${x.title} - ${x.rating} - ${x.genre}</option>`;
                 $('#movies').append(html2)
 
 
@@ -235,12 +237,13 @@ getHandler()
 
 // Post Method
 
-function postHandler(t, r) {
+function postHandler(t, r, g) {
     fetch('https://little-thundering-jump.glitch.me/movies', {
         method: 'POST',
         body: JSON.stringify({
             title: t,
-            rating: r
+            rating: r,
+            genre: g
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -254,7 +257,8 @@ $('#submit').click(function (e) {
     console.log(this);
     let t = document.getElementById('inputTitle').value;
     let r = document.getElementById('inputrRating').value;
-    postHandler(t, r)
+    let g = document.getElementById('inputGenre').value;
+    postHandler(t, r, g)
 })
 
 
@@ -268,7 +272,7 @@ function deleteHandler(id) {
 
     })
 }
-
+//Adding event listeners to dle
 function setButtons() {
 
     let xBtn = document.querySelectorAll('button')
@@ -282,38 +286,44 @@ function setButtons() {
 // adding event listeners to generate forms/button pulling data from events to populate PATCH METHOD
 let dropDwnBox = document.querySelector('#movies')
 dropDwnBox.addEventListener('change', function (e){
-    let findTitle = document.querySelector("select").value.split("-")[0]
-    let findRating = document.querySelector("select").value.split("-")[1]
+    let findTitle = document.querySelector("select").value.split("-")[0];
+    let findRating = document.querySelector("select").value.split("-")[1];
+    let findGenre = document.querySelector('select').value.split('-')[2];
     let getId = $(this).children(":selected").attr("id")
     $("#new-forms").empty()
     html = ""
     html += `<label for="newTitle">
            Title: <input type="text" name="newTitle" id="newTitle" value="${findTitle}">
        </label>
+       <label for="newGenre">
+        Genre: <input type="text" name="genre" id="newGenre" value="${findGenre}">
+       </label>
        <label for="newRating">
            Rating: <input type="text" name="newRating" id="newRating" value=${findRating}>
        </label>
        <label for="newSubmit">
-           <input type="button" name="submit" id="newSubmit" value="edit">
+           <input type="button" name="submit" id="newSubmit" value="Edit">
        </label>`
     $("#new-forms").append(html);
     let editBtn = document.querySelector('#newSubmit')
     editBtn.addEventListener('click', function(e){
         let xTitle = document.querySelector('#newTitle').value
         let xRating = document.querySelector('#newRating').value
+        let xGenre = document.querySelector('#newGenre').value
 
-        editPatch(xTitle, xRating, getId)
+        editPatch(xTitle, xRating, getId, xGenre)
     })
 })
 
 // PATCH METHOD
-function editPatch(title, rating, id) {
-    $('#new-forms').remove()
+function editPatch(title, rating, id, genre) {
+    $('#new-forms').empty()
     fetch(`https://little-thundering-jump.glitch.me/movies/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
             title: title,
-            rating: rating
+            rating: rating,
+            genre: genre
 
         }),
         headers: {
@@ -327,29 +337,6 @@ function editPatch(title, rating, id) {
 }
 
 
-//
-//
-//
-// //Patch Method
-//
-//
-// // fetch('https://little-thundering-jump.glitch.me/movies/4', {
-// //     method: 'PATCH',
-// //     body: JSON.stringify({
-// //         title: 'foo',
-// //         rating: 5
-// //
-// //     }),
-// //     headers: {
-// //         'Content-type': 'application/json; charset=UTF-8',
-// //     },
-// // })
-// //     .then((response) => response.json())
-// //     .then((json) => console.log(json));
-//
-//
-//
-//
 // //PUT Method
 //
 //
