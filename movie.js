@@ -216,7 +216,7 @@ function getHandler() {
 
                 $('.row').append(html);
                 let html2 = "";
-                html2 += `<option>${x.title}</option>`;
+                html2 += `<option id=${x.id}>${x.title} - ${x.rating}</option>`;
                 $('#movies').append(html2)
 
 
@@ -278,10 +278,53 @@ function setButtons() {
             deleteHandler(this.id)
         })
     })
-
-
-
 }
+// adding event listeners to generate forms/button pulling data from events to populate PATCH METHOD
+let dropDwnBox = document.querySelector('#movies')
+dropDwnBox.addEventListener('change', function (e){
+    let findTitle = document.querySelector("select").value.split("-")[0]
+    let findRating = document.querySelector("select").value.split("-")[1]
+    let getId = $(this).children(":selected").attr("id")
+    $("#new-forms").empty()
+    html = ""
+    html += `<label for="newTitle">
+           Title: <input type="text" name="newTitle" id="newTitle" value="${findTitle}">
+       </label>
+       <label for="newRating">
+           Rating: <input type="text" name="newRating" id="newRating" value=${findRating}>
+       </label>
+       <label for="newSubmit">
+           <input type="button" name="submit" id="newSubmit" value="edit">
+       </label>`
+    $("#new-forms").append(html);
+    let editBtn = document.querySelector('#newSubmit')
+    editBtn.addEventListener('click', function(e){
+        let xTitle = document.querySelector('#newTitle').value
+        let xRating = document.querySelector('#newRating').value
+
+        editPatch(xTitle, xRating, getId)
+    })
+})
+
+// PATCH METHOD
+function editPatch(title, rating, id) {
+    fetch(`https://little-thundering-jump.glitch.me/movies/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            title: title,
+            rating: rating
+
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => getHandler())
+        .catch(err => console.log(err))
+}
+
+
 //
 //
 //
