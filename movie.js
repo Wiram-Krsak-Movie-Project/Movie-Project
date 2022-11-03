@@ -189,3 +189,135 @@ function deleteThis (id) {
 // })
 //     .then((response) => response.json())
 //     .then((json) => console.log(json));
+
+
+//
+// //Get Method
+// $('#shadow').css('display', 'none')
+// let loading = document.createElement('div')
+// loading.id = 'loading'
+// loading.classList = 'display'
+// document.body.append(loading)
+// setTimeout(function () {
+//     loading.remove()
+//     $('#shadow').css('display', 'block')
+// }, 4000)
+//
+// function getHandler() {
+//     fetch('https://little-thundering-jump.glitch.me/movies')
+//         .then(res => res.json())
+//         .then(data => {
+//             $('.row').empty();
+//             $('#movies').empty()
+//             data.forEach(x => {
+//                 let html = "";
+//                 html += `<div id=${x.id} class="col-3"><p>Title: ${x.title}</p><p>Rating: ${x.rating}</p>`;
+//                 html += `<button id=${x.id}>x</button></div>`;
+//
+//                 $('.row').append(html);
+//                 let html2 = "";
+//                 html2 += `<option>${x.title}</option>`;
+//                 $('#movies').append(html2)
+//
+//
+//             })
+//
+//             setButtons()
+//         })
+//
+//         .catch(err => console.log(err))
+//
+//
+//
+// }
+// getHandler()
+//
+//
+// // Post Method
+//
+// function postHandler(t, r) {
+//     fetch('https://little-thundering-jump.glitch.me/movies', {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             title: t,
+//             rating: r
+//         }),
+//         headers: {
+//             'Content-type': 'application/json; charset=UTF-8',
+//         },
+//     })
+//         .then((response) => response.json())
+//         .then((json) => getHandler());
+// }
+//
+// $('#submit').click(function (e) {
+//     console.log(this);
+//     let t = document.getElementById('inputTitle').value;
+//     let r = document.getElementById('inputrRating').value;
+//     postHandler(t, r)
+// })
+//
+//
+// // Delete Method
+//
+// function deleteHandler(id) {
+//     fetch('https://little-thundering-jump.glitch.me/movies/' + id, {
+//         method: 'DELETE',
+//     }).then(res => {
+//         getHandler();
+//
+//     })
+// }
+//
+// function setButtons() {
+//
+//     let xBtn = document.querySelectorAll('button')
+//     xBtn.forEach(x => {
+//         x.addEventListener('click', function (e) {
+//             console.log(this.id);
+//             deleteHandler(this.id)
+//         })
+//     })
+//
+//
+//
+// }
+//
+//
+//
+// //Patch Method
+//
+//
+// // fetch('https://little-thundering-jump.glitch.me/movies/4', {
+// //     method: 'PATCH',
+// //     body: JSON.stringify({
+// //         title: 'foo',
+// //         rating: 5
+// //
+// //     }),
+// //     headers: {
+// //         'Content-type': 'application/json; charset=UTF-8',
+// //     },
+// // })
+// //     .then((response) => response.json())
+// //     .then((json) => console.log(json));
+//
+//
+//
+//
+// //PUT Method
+//
+//
+// // fetch('https://little-thundering-jump.glitch.me/movies/4', {
+// //     method: 'PUT',
+// //     body: JSON.stringify({
+// //         title: 'Movie#?3',
+// //         rating: 5
+// //
+// //     }),
+// //     headers: {
+// //         'Content-type': 'application/json; charset=UTF-8',
+// //     },
+// // })
+// //     .then((response) => response.json())
+// //     .then((json) => console.log(json));
