@@ -15,6 +15,9 @@
 /*}*/
 
 /* creating css loader */
+#caro {
+    height: 40vh;
+}
 
 #loading {
     width: 2rem;

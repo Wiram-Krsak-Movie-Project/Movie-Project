@@ -238,6 +238,53 @@ function getHandler() {
 getHandler()
 
 
+let gifURL;
+let count = 0;
+function getCarousel() {
+    fetch('https://little-thundering-jump.glitch.me/movies')
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(pull => {
+                let title = pull.title
+                let id = pull.id
+                fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIF_KEY}&q=${title}&limit=25&offset=0&rating=g&lang=en`, {
+                    mode: "cors",
+                    dataType: "jsonp",
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    }
+                })
+                    .then(response => response.json())
+                    .then(json => {
+                        gifURL = json.data[0].images.original.url;
+                        console.log(gifURL)
+                        generateHTML(gifURL)
+                    })
+            })
+        })
+        .catch(error => console.error(error));
+    setTimeout(function () {
+    }, 2000)
+}
+getCarousel()
+function generateHTML(gifURL){
+    if (count === 0) {
+        let html = ``;
+        html += `<div class="carousel-item active">
+       <img src=${gifURL} id="caro" class="d-block w-100" alt="...">
+   </div>`;
+        $("#newOutPut").append(html);
+        count++
+    } else {
+        let html = ``;
+        html += `<div class="carousel-item">
+       <img src=${gifURL} class="d-block w-100" alt="...">
+   </div>`;
+        $("#newOutPut").append(html);
+        count++
+    }
+}
+
 // Post Method
 
 function postHandler(t, r, g) {
