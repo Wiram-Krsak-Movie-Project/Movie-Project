@@ -14,7 +14,7 @@
 <div id="shadow">
     <br>
     <br>
-    <div class="container">
+    <div class="container" id="caro">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div id="newOutPut" class="carousel-inner">
 
@@ -33,13 +33,13 @@
     <form action="">
 
         <br>
-        <label for="inputTitle">
+        <label for="inputTitle" class="text-white">
             Add a Movie Title: <input type="text" name="title" id="inputTitle">
         </label>
-        <label for="inputGenre">
+        <label for="inputGenre" class="text-white">
             Genre: <input type="text" name="genre" id="inputGenre">
         </label>
-        <label for="inputeRating">
+        <label for="inputeRating" class="text-white">
             Rating: <input type="text" name="rating" id="inputeRating">
         </label>
         <label for="submit">
@@ -47,7 +47,7 @@
         </label>
         <br>
         <br>
-        <label for="movies">Choose a Movie to Edit:</label>
+        <label for="movies" class="text-white">Choose a Movie to Edit:</label>
         <select id="movies" name="movies">
         </select>
         <label id="new-forms">
@@ -56,10 +56,10 @@
         <br>
         <br>
         <button id="hide">Search</button>
-        <label for="search" id="unhide" class="none">
+        <label for="search" id="unhide" class="none text-white">
             Search Movie Name: <input type="text" name="search" id="search">
         </label>
-        <label for="ratings" id="unhide" class="none">Search by Rating:</label>
+        <label for="ratings" id="unhide" class="none text-white">Search by Rating:</label>
 
         <select name="ratings" id="ratings" class="none">
             <option value="all"></option>
@@ -69,10 +69,11 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        <label for="searchGenre"id="unhide" class="none">
+        <label for="searchGenre"id="unhide" class="none text-white">
             Search Movie Genre: <input type="text" name="searchGenre" id="searchGenre">
         </label>
     </form>
+    <br>
     <div id="test"></div>
     <div id="data" class="container">
         <div class="row" id="locations"></div>

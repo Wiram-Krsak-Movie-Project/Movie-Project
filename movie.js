@@ -22,7 +22,7 @@ function getHandler() {
 
                 array.push(x)
                 let html = "";
-                html += `<div id=${x.id} class="col-3 mb-3 bg-dark text-light"><p>Title: ${x.title}</p><p>Rating: ${x.rating}</p><p>Genre: ${x.genre}</p>`;
+                html += `<div id=${x.id} class="col-3 mb-3 text-light"><p>Title: ${x.title}</p><p>Rating: ${x.rating}</p><p>Genre: ${x.genre}</p>`;
                 html += `<button id=${x.id}>x</button></div>`;
 
                 $('.row').append(html);
@@ -63,7 +63,7 @@ function getCarousel() {
                     .then(response => response.json())
                     .then(json => {
                         gifURL = json.data[0].images.original.url;
-                        console.log(gifURL)
+
                         generateHTML(gifURL)
                     })
             })
