@@ -6,10 +6,13 @@ body {
     background-attachment: fixed;
     background-position: center;
 }
-
+#caro > .carousel-inner {
+    aspect-ratio: 348 / 167;
+}
 img {
-    height: 60vh;
+    /*height: 60vh;*/
     border: 4px solid white;
+    aspect-ratio: 348 / 167;
 }
 
 .caro {
