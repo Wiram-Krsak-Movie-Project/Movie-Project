@@ -2,6 +2,9 @@
 
 body {
     background: linear-gradient(to bottom, #434343 0%, black 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 img {
@@ -14,19 +17,31 @@ img {
 }
 
 #loading {
-    width: 2rem;
-    height: 2rem;
-    border: 5px solid #f3f3f3;
-    border-top: 6px solid #9c41f2;
-    border-radius: 100%;
-    margin: auto;
-    margin-top: 15em;
+
+
+    /*border: 5px solid #f3f3f3;*/
+    /*border-top: 6px solid #9c41f2;*/
+    /*border-radius: 100%;*/
+    /*margin: auto;*/
+    /*margin-top: 15em;*/
     visibility: hidden;
-    animation: spin 1s infinite linear;
+    /*animation: spin 1s infinite linear;*/
 }
+
+
 #loading.display {
     visibility: visible;
+    background-size: 170vh 40vw;
+    background-image:  url("assets/giphy.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    width: 150vw;
+    height: 100vh;
+    position: relative;
 }
+
+
 @keyframes spin {
     from {
         transform: rotate(0deg);

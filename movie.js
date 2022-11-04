@@ -7,7 +7,7 @@ document.body.append(loading)
 setTimeout(function () {
     loading.remove()
     $('#shadow').css('display', 'block')
-}, 2000)
+}, 5000)
 //Get Method
 let array = []
 function getHandler() {
