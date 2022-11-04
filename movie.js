@@ -81,8 +81,7 @@ function getHandler() {
                             'border-radius': '5px',
                             'cursor': 'pointer',
                             'transition': '0.3s',
-                            'height': '35vh',
-                            'width': '20vw',
+                            'aspect-ratio': '153/217',
                             'max-width': '100%',
                             'max-height': '100%'
 
@@ -234,15 +233,18 @@ dropDwnBox.addEventListener('change', function (e){
     let getId = $(this).children(":selected").attr("id")
     $("#new-forms").empty()
     html = ""
-    html += `<label for="newTitle">
+    html += `<label for="newTitle" class="text-white">
            Title: <input type="text" name="newTitle" id="newTitle" value="${findTitle}">
        </label>
-       <label for="newGenre">
+       <br>
+       <label for="newGenre" class="text-white">
         Genre: <input type="text" name="genre" id="newGenre" value="${findGenre}">
        </label>
-       <label for="newRating">
+       <br>
+       <label for="newRating" class="text-white">
            Rating: <input type="text" name="newRating" id="newRating" value=${findRating}>
        </label>
+       <br>
        <label for="newSubmit">
            <input type="button" name="submit" id="newSubmit" value="Edit">
        </label>`
@@ -291,6 +293,9 @@ function search_Movie() {
     });
 
     $('#locations').innerHTML = renderMovies(filteredMovies);
+    $('#locations').contents().filter(function(){
+        return this.nodeType === 3;
+    }).remove();
     setButtons()
 }
 
@@ -334,8 +339,7 @@ function renderMovie(movie) {
                 'border-radius': '5px',
                 'cursor': 'pointer',
                 'transition': '0.3s',
-                'height': '35vh',
-                'width': '20vw',
+                'aspect-ratio': '153/217',
                 'max-width': '100%',
                 'max-height': '100%'
             })
@@ -388,6 +392,9 @@ function search_Range(range) {
             }
         });
         $('#locations').innerHTML = renderMovies(filteredMovies);
+        $('#locations').contents().filter(function(){
+            return this.nodeType === 3;
+        }).remove();
         setButtons()
     }
 }
@@ -402,57 +409,45 @@ function search_Genre() {
         }
     });
     $('#locations').innerHTML = renderMovies(filteredMovies);
+    $('#locations').contents().filter(function(){
+        return this.nodeType === 3;
+    }).remove();
     setButtons()
 }
 
 let genreSearch = document.querySelector('#searchGenre');
 genreSearch.addEventListener('keyup', search_Genre);
 
-
+//Event listener for the add button to display content
 let hide = document.getElementById('hide');
 hide.addEventListener('click', function (e) {
     e.preventDefault();
-    let unhide = document.querySelectorAll('#unhide');
+    let unhide = document.querySelectorAll('.unhide');
     unhide.forEach(x => {
         $(x).toggleClass('none')
         $('#ratings').toggleClass('none')
     })
 
 })
-
-function postPoster(title, genre, rating) {
-
-
-    fetch(`http://www.omdbapi.com/?t=${title}&apikey=df2cac18`)
-        .then(res => res.json())
-        .then(data => {
-
-           let html = `<img id="myImg${postInd}" src="${data.Poster}" alt="Movie: ${data.Title} Genre: ${genre} Rating: ${rating}">
-
-
-<div id="myModal${postInd}" class="modal">
-
-
-  <span class="close" id="${postInd}">&times;</span>
-
-
-  <img class="modal-content" id="img${postInd}">
-
-
-  <div id="caption"></div>
-</div>`
+//Event listener for the edit button to display content
+let hidden = document.getElementById('hide1')
+hidden.addEventListener('click', function (e) {
+    e.preventDefault();
+    let unhide = document.querySelectorAll('.unhide1');
+    unhide.forEach(x => {
+        $(x).toggleClass('none')
+    })
+})
+//Event listener for the search button to display content
+let addHidden = document.getElementById('hide2');
+addHidden.addEventListener('click', function (e) {
+    e.preventDefault();
+    let unhide = document.querySelectorAll('.unhide2');
+    unhide.forEach(x => {
+        $(x).toggleClass('none')
+    })
+})
 
 
-
-
-
-
-            postInd++
-            console.log(postInd)
-            console.log(html)
-            return html
-        })
-        .catch(err => console.log(err))
-}
 
 setButtons()

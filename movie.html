@@ -34,22 +34,30 @@
     <form action="">
 
         <br>
-        <label for="inputTitle" class="text-white">
+        <button id="hide2">Add</button>
+        <br>
+        <label for="inputTitle" class="text-white none unhide2">
             Add a Movie Title: <input type="text" name="title" id="inputTitle">
         </label>
-        <label for="inputGenre" class="text-white">
+        <br>
+        <label for="inputGenre" class="text-white none unhide2">
             Genre: <input type="text" name="genre" id="inputGenre">
         </label>
-        <label for="inputeRating" class="text-white">
+        <br>
+        <label for="inputeRating" class="text-white none unhide2">
             Rating: <input type="text" name="rating" id="inputeRating">
         </label>
-        <label for="submit">
+        <br>
+        <label for="submit" class="none unhide2">
             <input type="button" name="submit" id="submit" value="Submit">
         </label>
         <br>
         <br>
-        <label for="movies" class="text-white">Choose a Movie to Edit:</label>
-        <select id="movies" name="movies">
+        <button id="hide1">Edit</button>
+        <br>
+
+        <label for="movies" class="text-white none unhide1">Choose a Movie to Edit:</label>
+        <select id="movies" name="movies" class="none unhide1">
         </select>
         <label id="new-forms">
 
@@ -57,10 +65,12 @@
         <br>
         <br>
         <button id="hide">Search</button>
-        <label for="search" id="unhide" class="none text-white">
+        <br>
+        <label for="search" class="none text-white unhide">
             Search Movie Name: <input type="text" name="search" id="search">
         </label>
-        <label for="ratings" id="unhide" class="none text-white">Search by Rating:</label>
+        <br>
+        <label for="ratings" class="none text-white unhide">Search by Rating:</label>
 
         <select name="ratings" id="ratings" class="none">
             <option value="all"></option>
@@ -70,7 +80,8 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        <label for="searchGenre"id="unhide" class="none text-white">
+        <br>
+        <label for="searchGenre" class="none text-white unhide">
             Search Movie Genre: <input type="text" name="searchGenre" id="searchGenre">
         </label>
     </form>
