@@ -41,28 +41,51 @@
 
 
 <form action="">
-    Add a Movie
+
     <br>
     <label for="inputTitle">
-        Title: <input type="text" name="title" id="inputTitle">
+        Add a Movie Title: <input type="text" name="title" id="inputTitle">
     </label>
     <label for="inputGenre">
         Genre: <input type="text" name="genre" id="inputGenre">
     </label>
-    <label for="inputrRating">
-        Rating: <input type="text" name="rating" id="inputrRating">
+    <label for="inputeRating">
+        Rating: <input type="text" name="rating" id="inputeRating">
     </label>
     <label for="submit">
         <input type="button" name="submit" id="submit" value="Submit">
     </label>
+    <br>
+    <br>
     <label for="movies">Choose a Movie to Edit:</label>
     <select id="movies" name="movies">
     </select>
     <label id="new-forms">
 
     </label>
+    <br>
+    <br>
+    <button id="hide">Search</button>
+    <label for="search" id="unhide" class="none">
+        Search Movie Name: <input type="text" name="search" id="search">
+    </label>
+    <label for="ratings" id="unhide" class="none">Search by Rating:</label>
+
+    <select name="ratings" id="ratings" class="none">
+        <option value="all"></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <label for="searchGenre"id="unhide" class="none">
+        Search Movie Genre: <input type="text" name="searchGenre" id="searchGenre">
+    </label>
 </form>
+    <div id="test"></div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
