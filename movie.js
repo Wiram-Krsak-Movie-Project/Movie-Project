@@ -16,24 +16,106 @@ function getHandler() {
         .then(res => res.json())
         .then(data => {
             console.log(data);
-            $('.row').empty();
+            $('#locations').empty();
             $('#movies').empty()
+
             data.forEach(x => {
+
+
 
                 array.push(x)
                 let html = "";
-                html += `<div id=${x.id} class="col-3 mb-3 text-light"><p>Title: ${x.title}</p><p>Rating: ${x.rating}</p><p>Genre: ${x.genre}</p>`;
-                html += `<button id=${x.id}>x</button></div>`;
+                // html += `<div id=${x.id} class="col-6 col-md-3 mb-3 text-light"><p>Title: ${x.title}</p><p>Rating: ${x.rating}</p><p>Genre: ${x.genre}</p>`;
 
-                $('.row').append(html);
-                let html2 = "";
-                html2 += `<option id=${x.id}>${x.title} - ${x.rating} - ${x.genre}</option>`;
-                $('#movies').append(html2)
+                //seperator for postposter
+                fetch(`http://www.omdbapi.com/?t=${x.title}&apikey=df2cac18`)
+                    .then(res => res.json())
+                    .then(data => {
+
+                        let html = `<div class="col-6 col-md-3"><img id="myImg${x.id}" src="${data.Poster}" alt="Movie: ${data.Title} <br> Genre: ${x.genre} <br> Rating: ${x.rating}">
+
+
+<div id="myModal${x.id}" class="modal">
+
+
+  <span class="close" id="${x.id}2">&times;</span>
+
+
+  <img class="modal-content" id="img${x.id}">
+
+
+  <div id="caption${x.id}"></div>
+</div>`
+
+
+
+
+
+
+                            html += `<button id=${x.id} class="w-100 mb-2" onclick="deleteHandler(this.id)">x</button></div>`;
+
+                        $('#locations').append(html);
+                        let html2 = "";
+                        html2 += `<option id=${x.id}>${x.title} - ${x.rating} - ${x.genre}</option>`;
+                        $('#movies').append(html2)
+
+
+                        // Get the modal by its correct id Seperator
+                        var modal = document.getElementById(`myModal${x.id}`);
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption get image its correct id
+                        var img = document.getElementById(`myImg${x.id}`);
+                        var modalImg = document.getElementById(`img${x.id}`);
+                        var captionText = document.getElementById(`caption${x.id}`);
+                        $(captionText).css({
+                            'margin': 'auto',
+                            'display': 'block',
+                            'width': '80%',
+                            'max-width': '700px',
+                            'text-align': 'center',
+                             'color': '#ccc',
+                             'padding': '10px 0',
+                             'height': '150px',
+                        })
+                        $(img).css({
+                            'border-radius': '5px',
+                            'cursor': 'pointer',
+                            'transition': '0.3s',
+                            'height': '35vh',
+                            'width': '20vw',
+                            'max-width': '100%',
+                            'max-height': '100%'
+
+                        })
+                        img.onclick = function(){
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+                            captionText.innerHTML = this.alt;
+                        }
+
+// Get the <span> element that closes the modal  with an icremented id not class
+                        var span = document.getElementById(`${x.id}2`);
+
+// When the user clicks on <span> (x), close the modal
+                        span.onclick = function() {
+                            modal.style.display = "none";
+                        }
+
+
+
+
+
+                        postInd++
+
+                    })
+                    .catch(err => console.log(err))
+
+                //seperator for postposter
 
 
             })
 
-            setButtons()
+
         })
 
         .catch(err => console.log(err))
@@ -46,6 +128,7 @@ getHandler()
 
 let gifURL;
 let count = 0;
+let postInd = 0;
 function getCarousel() {
     fetch('https://little-thundering-jump.glitch.me/movies')
         .then(res => res.json())
@@ -127,6 +210,7 @@ function deleteHandler(id) {
     fetch('https://little-thundering-jump.glitch.me/movies/' + id, {
         method: 'DELETE',
     }).then(res => {
+        console.log(res);
         getHandler();
 
     })
@@ -137,8 +221,7 @@ function setButtons() {
     let xBtn = document.querySelectorAll('button')
     xBtn.forEach(x => {
         x.addEventListener('click', function (e) {
-
-            deleteHandler(this.id)
+          e.preventDefault()
         })
     })
 }
@@ -206,7 +289,8 @@ function search_Movie() {
             filteredMovies.push(movie);
         }
     });
-    $('.row').innerHTML = renderMovies(filteredMovies);
+
+    $('#locations').innerHTML = renderMovies(filteredMovies);
     setButtons()
 }
 
@@ -216,18 +300,71 @@ searchBar.addEventListener('keyup', search_Movie);
 function renderMovie(movie) {
 
     let html = "";
-    html += `<div id=${movie.id} class="col-3 mb-3 bg-dark text-light"><p>Title: ${movie.title}</p><p>Rating: ${movie.rating}</p><p>Genre: ${movie.genre}</p>`;
-    html += `<button id=${movie.id}>x</button></div>`;
-    return html
-}
+    fetch(`http://www.omdbapi.com/?t=${movie.title}&apikey=df2cac18`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            let html = `<div class="col-6 col-md-3"><img id="myImg${movie.id}" src="${data.Poster}" alt="Movie: ${data.Title} <br> Genre: ${movie.genre} <br> Rating: ${movie.rating}">
+<div id="myModal${movie.id}" class="modal">
+  <span class="close" id="${movie.id}2">&times;</span>
+  <img class="modal-content" id="img${movie.id}">
+  <div id="caption${movie.id}"></div>
+</div>`
 
+            html += `<button id=${movie.id} class="w-100 mb-2" onclick="deleteHandler(this.id)">x</button></div>`;
+
+            $('#locations').append(html);
+
+            var modal = document.getElementById(`myModal${movie.id}`);
+
+            var img = document.getElementById(`myImg${movie.id}`);
+            var modalImg = document.getElementById(`img${movie.id}`);
+            var captionText = document.getElementById(`caption${movie.id}`);
+            $(captionText).css({
+                'margin': 'auto',
+                'display': 'block',
+                'width': '80%',
+                'max-width': '700px',
+                'text-align': 'center',
+                'color': '#ccc',
+                'padding': '10px 0',
+                'height': '150px'
+            })
+            $(img).css({
+                'border-radius': '5px',
+                'cursor': 'pointer',
+                'transition': '0.3s',
+                'height': '35vh',
+                'width': '20vw',
+                'max-width': '100%',
+                'max-height': '100%'
+            })
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+
+            var span = document.getElementById(`${movie.id}2`);
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            console.log(html)
+            return html
+})
+}
 function renderMovies(movies) {
-    $('.row').empty()
+    console.log(movies);
+    $('#locations').empty()
     let html = '';
     for (let i = 0; i < movies.length; i++) {
+
         html += renderMovie(movies[i]);
     }
-    $('.row').append(html)
+
+    $('#locations').append(html)
 }
 
 
@@ -250,7 +387,7 @@ function search_Range(range) {
                 filteredMovies.push(movie);
             }
         });
-        $('.row').innerHTML = renderMovies(filteredMovies);
+        $('#locations').innerHTML = renderMovies(filteredMovies);
         setButtons()
     }
 }
@@ -264,7 +401,7 @@ function search_Genre() {
             filteredMovies.push(movie);
         }
     });
-    $('.row').innerHTML = renderMovies(filteredMovies);
+    $('#locations').innerHTML = renderMovies(filteredMovies);
     setButtons()
 }
 
@@ -282,3 +419,40 @@ hide.addEventListener('click', function (e) {
     })
 
 })
+
+function postPoster(title, genre, rating) {
+
+
+    fetch(`http://www.omdbapi.com/?t=${title}&apikey=df2cac18`)
+        .then(res => res.json())
+        .then(data => {
+
+           let html = `<img id="myImg${postInd}" src="${data.Poster}" alt="Movie: ${data.Title} Genre: ${genre} Rating: ${rating}">
+
+
+<div id="myModal${postInd}" class="modal">
+
+
+  <span class="close" id="${postInd}">&times;</span>
+
+
+  <img class="modal-content" id="img${postInd}">
+
+
+  <div id="caption"></div>
+</div>`
+
+
+
+
+
+
+            postInd++
+            console.log(postInd)
+            console.log(html)
+            return html
+        })
+        .catch(err => console.log(err))
+}
+
+setButtons()
