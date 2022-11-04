@@ -108,7 +108,7 @@ function postHandler(t, r, g) {
         .then((response) => response.json())
         .then((json) => {
             getHandler()
-            // getCarousel()
+            getCarousel()
         });
 }
 
@@ -253,10 +253,7 @@ function search_Range(range) {
         $('.row').innerHTML = renderMovies(filteredMovies);
         setButtons()
     }
-
-
 }
-
 
 function search_Genre() {
     let input = document.getElementById('searchGenre').value;
