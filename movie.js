@@ -156,6 +156,7 @@ function getCarousel() {
 }
 getCarousel()
 function generateHTML(gifURL){
+
     if (count === 0) {
         let html = ``;
         html += `<div class="carousel-item active">
@@ -168,8 +169,9 @@ function generateHTML(gifURL){
         html += `<div class="carousel-item">
        <img src=${gifURL} class="d-block w-100" alt="...">
    </div>`;
-        $("#newOutPut").append(html);
         count++
+        $("#newOutPut").append(html);
+
     }
 }
 
@@ -190,6 +192,8 @@ function postHandler(t, r, g) {
         .then((response) => response.json())
         .then((json) => {
             getHandler()
+            $("#newOutPut").empty()
+            count = 0
             getCarousel()
         });
 }
@@ -211,7 +215,9 @@ function deleteHandler(id) {
     }).then(res => {
         console.log(res);
         getHandler();
-
+        $("#newOutPut").empty()
+        count = 0
+        getCarousel()
     })
 }
 //Adding event listeners to dle
