@@ -1,4 +1,4 @@
-(function () {
+
     'use strict'
 
 //Opening Loader Screen
@@ -35,7 +35,7 @@ function getHandler() {
                                       <img class="modal-content" id="img${x.id}">
                                       <div id="caption${x.id}"></div>
                                     </div>`
-                        html += `<button id=${x.id} class="w-100 mb-2 custom text-white" onclick="deleteHandler(this.id)">x</button></div>`;
+                        html += `<button id=${x.id} class="w-100 mb-2 custom text-white delete" onclick="deleteHandler(this.id)">x</button></div>`;
                         $('#locations').append(html);
                         let html2 = "";
                         html2 += `<option id=${x.id}>${x.title} - ${x.rating} - ${x.genre}</option>`;
@@ -79,6 +79,7 @@ function getHandler() {
                         span.onclick = function() {
                             modal.style.display = "none";
                         }
+
                     })
                     .catch(err => console.log(err));
             })
@@ -395,4 +396,3 @@ addHidden.addEventListener('click', function (e) {
 
 
 setButtons();
-})()
