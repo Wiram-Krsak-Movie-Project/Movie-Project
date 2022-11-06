@@ -32,7 +32,7 @@ function getHandler() {
                                       <img class="modal-content" id="img${x.id}">
                                       <div id="caption${x.id}"></div>
                                     </div>`
-                        html += `<button id=${x.id} class="w-100 mb-2" onclick="deleteHandler(this.id)">x</button></div>`;
+                        html += `<button id=${x.id} class="w-100 mb-2 custom text-white" onclick="deleteHandler(this.id)">x</button></div>`;
                         $('#locations').append(html);
                         let html2 = "";
                         html2 += `<option id=${x.id}>${x.title} - ${x.rating} - ${x.genre}</option>`;
@@ -206,7 +206,7 @@ dropDwnBox.addEventListener('change', function (e){
             </label>
             <br>
             <label for="newSubmit">
-            <input type="button" name="submit" id="newSubmit" value="Edit">
+            <input type="button" name="submit" id="newSubmit" class="custom text-white" value="Submit">
             </label>`
     $("#new-forms").append(html);
     let editBtn = document.querySelector('#newSubmit');
@@ -268,7 +268,7 @@ function renderMovie(movie) {
                         <img class="modal-content" id="img${movie.id}">
                         <div id="caption${movie.id}"></div>
                         </div>`
-            html += `<button id=${movie.id} class="w-100 mb-2" onclick="deleteHandler(this.id)">x</button></div>`;
+            html += `<button id=${movie.id} class="w-100 mb-2 custom text-white" onclick="deleteHandler(this.id)">x</button></div>`;
             $('#locations').append(html);
 
             var modal = document.getElementById(`myModal${movie.id}`);
