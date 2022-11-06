@@ -1,3 +1,6 @@
+(function () {
+    'use strict'
+
 //Opening Loader Screen
 $('#shadow').css('display', 'none');
 let loading = document.createElement('div');
@@ -192,7 +195,7 @@ dropDwnBox.addEventListener('change', function (e){
     let findGenre = document.querySelector('select').value.split('-')[2];
     let getId = $(this).children(":selected").attr("id");
     $("#new-forms").empty();
-    html = ""
+    let html = ""
     html += `<label for="newTitle" class="text-white">
             Title: <input type="text" name="newTitle" id="newTitle" value="${findTitle}">
             </label>
@@ -392,3 +395,4 @@ addHidden.addEventListener('click', function (e) {
 
 
 setButtons();
+})()
