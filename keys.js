@@ -1,1 +1,0 @@
-const GIF_KEY="AcD90pZaDuKr3wmKKzpGrUQ7w8pI1mZu"
