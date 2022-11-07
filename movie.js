@@ -1,6 +1,6 @@
 
     'use strict'
-
+console.log("hello")
 //Opening Loader Screen
 $('#shadow').css('display', 'none');
 let loading = document.createElement('div');
